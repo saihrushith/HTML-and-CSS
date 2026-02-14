@@ -1,0 +1,230 @@
+/* Import Google Sans */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Google Sans", sans-serif;
+  background: url("./Assets/background.jpg") center center / cover no-repeat
+    fixed;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.8);
+}
+
+.main-container {
+  width: 100%;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.05); /* Ultra-light glass */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #00e5ff; /* Neon Cyan */
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #ff4081; /* Hot Pink */
+  margin-top: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Songs Section */
+.songs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.song-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+  width: 300px;
+}
+
+.song-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.song-card h4 {
+  color: #00e5ff;
+  margin-bottom: 0.5rem;
+}
+
+audio {
+  width: 100%;
+  height: 40px;
+  margin-top: 0.5rem;
+  filter: invert(1) hue-rotate(180deg); /* Style audio player to look dark/cool */
+}
+
+/* Movie Cards */
+.movie-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.movie-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.02);
+  border-color: rgba(255, 64, 129, 0.5); /* Pink border on hover */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.movie-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.movie-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.movie-stats {
+  font-size: 1rem;
+  background: rgba(0, 229, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  color: #00e5ff;
+}
+
+/* Video Embed Wrapper */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.movie-description {
+  text-align: justify;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+/* Highlights */
+mark {
+  background: rgba(0, 229, 255, 0.2);
+  color: white;
+  padding: 0 5px;
+  border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .movie-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
