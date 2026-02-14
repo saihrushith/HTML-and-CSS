@@ -146,7 +146,6 @@ audio {
 }
 
 .movie-card:hover {
-  transform: scale(1.02);
   border-color: rgba(255, 64, 129, 0.5); /* Pink border on hover */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
@@ -185,7 +184,8 @@ audio {
   border-radius: 15px;
   overflow: hidden;
   margin-bottom: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  /* Removed clumsy shadow/scale */
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .video-wrapper iframe {
@@ -227,4 +227,133 @@ mark {
     flex-direction: column;
     text-align: center;
   }
+}
+
+/* =========================================
+   GLOBAL ANIMATIONS (User Request: "Each and Every Tag")
+   ========================================= */
+
+/* 1. Entry Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply entry animation to main container */
+.main-container {
+  animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Staggered animation for children could be cool, but let's stick to the container for now 
+   unless we want to target every child. Let's make the sections animate too. */
+section,
+header,
+footer {
+  animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+/* 2. Universal "Every Tag" Hover Animation */
+/* Targeting all major visual tags, excluding text tags that need specific effects */
+div,
+section,
+article,
+header,
+footer,
+img,
+li,
+ul,
+ol,
+form,
+input,
+button,
+span,
+strong,
+em,
+b,
+i,
+small,
+mark,
+audio,
+iframe,
+label {
+  transition: all 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  transition: all 0.3s ease;
+}
+
+/* On hover, brighten generic structural/media elements */
+div:hover,
+section:hover,
+article:hover,
+header:hover,
+footer:hover,
+li:hover,
+ul:hover,
+ol:hover,
+form:hover,
+span:hover,
+strong:hover,
+em:hover,
+b:hover,
+i:hover,
+small:hover,
+mark:hover,
+label:hover {
+  filter: brightness(1.15) contrast(1.05);
+}
+
+/* Specific Text Animations (Typography Effects) */
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover {
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  transform: scale(1.02);
+  letter-spacing: 1px;
+}
+
+p:hover {
+  transform: translateY(-2px);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+}
+
+a:hover {
+  text-shadow: 0 0 8px rgba(255, 64, 129, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Specific "Special Effect" for interactive/media elements */
+img:hover,
+audio:hover,
+button:hover,
+input:hover {
+  transform: scale(1.02);
+  filter: brightness(1.2);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+/* iframe (Video/Map) - No Scale to avoid clumsy look */
+iframe:hover {
+  filter: brightness(1.1);
+  box-shadow: none;
 }
