@@ -1,0 +1,346 @@
+/* project3.css - Interactive Glassmorphism Time Table */
+
+/* Import Google Sans */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Google Sans", sans-serif;
+  background: url("./Assets/background.jpg") center center / cover no-repeat
+    fixed;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center table vertically too */
+  padding: 2rem;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.5);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.8);
+}
+
+/* Back Link (Top left absolute or relative top) */
+.back-link {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  padding: 10px 25px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.back-link:hover {
+  background: rgba(255, 64, 129, 0.2);
+  border-color: #ff4081;
+  color: #ff4081;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+}
+
+/* ==================================================
+   TABLE CONTAINER (Glassmorphism Wrapper)
+   ================================================== */
+.glass-table-wrapper {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 1100px;
+  overflow-x: auto; /* Allow scrolling on small screens if needed */
+
+  /* Entry Animation */
+  opacity: 0;
+  transform: scale(0.95) translateY(30px);
+  animation: tableEntry 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes tableEntry {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==================================================
+   TABLE STYLING
+   ================================================== */
+.styled-table {
+  width: 100%;
+  border-collapse: separate; /* Required for border-radius on cells */
+  border-spacing: 5px; /* Adds gap between floating cells */
+}
+
+/* Caption (Title) */
+.styled-table caption {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00e5ff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+/* Shared Cell Styles */
+.styled-table th,
+.styled-table td {
+  padding: 0.8rem 1rem; /* Reduced padding from 1.2rem to make it less long */
+  text-align: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05); /* Base glass for cells */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.95rem; /* Slightly smaller text for better fit */
+}
+
+/* Header Row styling (Times) */
+.styled-table thead th {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.3),
+    rgba(0, 150, 255, 0.3)
+  );
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.2);
+  backdrop-filter: blur(5px);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.8);
+  animation: neonPulseCyan 3s infinite alternate ease-in-out;
+}
+
+@keyframes neonPulseCyan {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 229, 255, 0.2);
+    text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+    text-shadow: 0 0 12px rgba(0, 229, 255, 1);
+  }
+}
+
+/* Specific styling for the 'Day' column header */
+.styled-table thead th:first-child {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 64, 129, 0.4),
+    rgba(200, 30, 100, 0.4)
+  );
+  color: #ffffff;
+  border-color: rgba(255, 64, 129, 0.6);
+  box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+  text-shadow: 0 0 8px #ff4081;
+  animation: neonPulsePink 3s infinite alternate ease-in-out;
+}
+
+@keyframes neonPulsePink {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 64, 129, 0.2);
+    text-shadow: 0 0 5px rgba(255, 64, 129, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 64, 129, 0.6);
+    text-shadow: 0 0 12px rgba(255, 64, 129, 1);
+  }
+}
+
+/* Row Headers (Days - Mon, Tue, etc.) */
+.styled-table tbody th {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 64, 129, 0.25),
+    rgba(156, 39, 176, 0.25)
+  );
+  color: #ffffff;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 64, 129, 0.4);
+  box-shadow: 0 4px 10px rgba(255, 64, 129, 0.15);
+  animation: neonPulsePink Subtle 4s infinite alternate ease-in-out;
+}
+
+/* ==================================================
+   INTERACTIVE HOVER EFFECTS (The "Special" Part)
+   ================================================== */
+
+/* Hovering a standard data cell */
+.styled-table tbody td:hover {
+  background: rgba(0, 229, 255, 0.2);
+  border-color: #00e5ff;
+  color: white;
+  transform: scale(1.08); /* Pop out effect */
+  box-shadow: 0 10px 25px rgba(0, 229, 255, 0.3);
+  z-index: 2; /* Ensure it pops over adjacent cells */
+  font-weight: bold;
+  text-shadow: 0 0 8px #00e5ff;
+}
+
+/* Optional: Slight brightness to the row being hovered */
+.styled-table tbody tr:hover td:not(:hover),
+.styled-table tbody tr:hover th {
+  filter: brightness(1.2);
+}
+
+/* ==================================================
+   SPECIAL "SPAN" CELLS (Like Lunch Break)
+   ================================================== */
+
+/* We'll use classes on the HTML to target these easily */
+
+.cell-lunch {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 64, 129, 0.2),
+    rgba(156, 39, 176, 0.2)
+  ) !important;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem; /* Smaller font so it's not so imposing */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  /* Instead of pure vertical text which stretches it, let's keep it horizontal but centered, or use a smaller vertical setup */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-color: rgba(255, 64, 129, 0.4) !important;
+  padding: 0.5rem !important; /* Drastically reduce padding for this spanning cell */
+  line-height: 1.2;
+  animation: gradientShiftPink 5s infinite alternate ease-in-out;
+}
+
+@keyframes gradientShiftPink {
+  0% {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 64, 129, 0.2),
+      rgba(156, 39, 176, 0.2)
+    );
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.2);
+  }
+  100% {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 64, 129, 0.4),
+      rgba(156, 39, 176, 0.4)
+    );
+    box-shadow: 0 0 25px rgba(255, 64, 129, 0.5);
+  }
+}
+
+.cell-lunch:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 64, 129, 0.4),
+    rgba(156, 39, 176, 0.4)
+  ) !important;
+  box-shadow: 0 0 30px rgba(255, 64, 129, 0.4) !important;
+  text-shadow: 0 0 10px white !important;
+  transform: scale(1.03) !important;
+}
+
+.cell-project {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.15),
+    rgba(76, 175, 80, 0.15)
+  ) !important;
+  font-weight: bold;
+  border-color: rgba(76, 175, 80, 0.3) !important;
+  animation: gradientShiftGreen 4s infinite alternate ease-in-out;
+}
+
+@keyframes gradientShiftGreen {
+  0% {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 229, 255, 0.15),
+      rgba(76, 175, 80, 0.15)
+    );
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+  }
+  100% {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 229, 255, 0.3),
+      rgba(76, 175, 80, 0.3)
+    );
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+  }
+}
+
+.cell-project:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.3),
+    rgba(76, 175, 80, 0.3)
+  ) !important;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4) !important;
+  transform: scale(1.05) !important;
+}
+
+/* Footer Note */
+.table-footer td {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  padding-top: 2rem !important;
+}
+.table-footer td:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  filter: none;
+}
+
+/* ==================================================
+   RESPONSIVENESS
+   ================================================== */
+@media (max-width: 850px) {
+  .styled-table th,
+  .styled-table td {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .cell-lunch {
+    writing-mode: horizontal-tb; /* revert on small screens if it breaks */
+    letter-spacing: 2px;
+  }
+}

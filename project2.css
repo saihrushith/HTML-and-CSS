@@ -1,0 +1,387 @@
+/* project2.css - Dashboard Layout & Animations */
+
+/* Import Google Sans */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Google Sans", sans-serif;
+  background: url("./Assets/background.jpg") center center / cover no-repeat
+    fixed;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.5);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.8);
+}
+
+/* Page Title (Hero style) */
+.page-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #00e5ff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+  animation: titleDrop 1s ease-out forwards;
+}
+
+@keyframes titleDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Back Link */
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 10px 25px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  background: rgba(255, 64, 129, 0.2);
+  border-color: #ff4081;
+  color: #ff4081;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+}
+
+/* ==================================================
+   DASHBOARD GRID CONTAINER
+   ================================================== */
+.dashboard-container {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* ==================================================
+   GLASS CARDS (Bento Box style)
+   ================================================== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  /* Initial state for entry animation */
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardEntry 0.8s forwards;
+}
+
+/* Add a subtle highlight line on top */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 229, 255, 0.5),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover effect on cards */
+.glass-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* Card Entry Animation (Staggered dynamically via inline style in HTML) */
+@keyframes cardEntry {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card Headings */
+.glass-card h2 {
+  font-size: 1.5rem;
+  color: #ff4081; /* Hot Pink headers */
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover h2 {
+  color: #00e5ff;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+  letter-spacing: 1px;
+}
+
+/* ==================================================
+   LIST STYLING & ANIMATIONS
+   ================================================== */
+
+/* Remove default lists inside cards */
+.glass-card ul,
+.glass-card ol {
+  list-style: none; /* We will use custom markers */
+  padding-left: 0;
+}
+
+.glass-card li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start; /* Align to top instead of center to prevent weird wrapping */
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  word-break: break-word; /* Ensure long words break instead of overflowing */
+  line-height: 1.4;
+}
+
+/* Custom List Markers (Counters for OL, Icons for UL) */
+.glass-card ol {
+  counter-reset: custom-counter;
+}
+
+.glass-card ol li::before {
+  counter-increment: custom-counter;
+  content: counter(custom-counter) ".";
+  color: #ff4081;
+  font-weight: bold;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  min-width: 1.5rem; /* alignment */
+  flex-shrink: 0; /* Prevent the counter from shrinking */
+}
+
+/* Custom markers for UL (a small dot/arrow) */
+.glass-card ul li::before {
+  content: "▸";
+  color: #00e5ff;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* Nested lists */
+.glass-card li ul,
+.glass-card li ol {
+  margin-top: 0.8rem;
+  margin-left: 1.5rem;
+  width: 100%;
+}
+
+.glass-card li {
+  flex-wrap: wrap; /* allow nested lists to drop down */
+}
+
+/* Specific class to center a single card in a grid row */
+.center-card {
+  grid-column: 1 / -1; /* default to full width just in case */
+}
+
+@media (min-width: 670px) {
+  /* When the grid has 2+ columns, center the DEV PLAN card */
+  .center-card {
+    /* Magic trick to center a grid item in auto-fit */
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 100%;
+    max-width: 500px; /* Prevent it from taking the WHOLE width, just center a normal sized card */
+  }
+}
+
+/* List Item Hover Effects */
+.glass-card li:hover {
+  transform: translateX(8px);
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 229, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.glass-card ol li:hover::before {
+  color: #00e5ff;
+  transform: scale(1.2);
+}
+
+.glass-card ul li:hover::before {
+  color: #ff4081;
+  transform: translateX(5px);
+}
+
+/* ==================================================
+   DEFINITION LIST (dl)
+   ================================================== */
+dl {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+dt {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #00e5ff;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Little line under DT */
+dt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: #ff4081;
+  transition: width 0.3s ease;
+}
+
+dd {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-left: 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.15);
+  border-left: 3px solid rgba(0, 229, 255, 0.3);
+  border-radius: 0 10px 10px 0;
+  transition: all 0.3s ease;
+  text-align: justify;
+}
+
+/* DL Hover Effects */
+dl div {
+  /* Wrap dt/dd pairs in HTML for grouping hover */
+  transition: all 0.3s ease;
+}
+
+.dl-group:hover dt {
+  color: white;
+  text-shadow: 0 0 8px #00e5ff;
+}
+
+.dl-group:hover dt::after {
+  width: 100%;
+}
+
+.dl-group:hover dd {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.05);
+  border-left-color: #ff4081;
+  transform: translateX(5px);
+}
+
+/* ==================================================
+   CONSISTENT TEXT ANIMATIONS (from styles.css)
+   ================================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover {
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  transform: scale(1.02);
+  letter-spacing: 1px;
+}
+
+/* General Link fix inside dashboard */
+a {
+  color: #00e5ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block; /* Required for transform */
+}
+
+a:hover {
+  color: #ff4081;
+  text-shadow: 0 0 8px rgba(255, 64, 129, 0.6);
+  transform: translateY(-2px);
+}

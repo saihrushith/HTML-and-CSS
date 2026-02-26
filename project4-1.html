@@ -1,69 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>TAP Academy — Interactive Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:italic,wght@0,400;0,500;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./project4-1.css" />
   </head>
   <body>
+    <!-- Back Navigation -->
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+
     <!-- ===== Page Header ===== -->
-    <h1 id="top">TAP Academy — Gamify Learning Simplify Employment</h1>
-    <p>
-      This page embeds TAP Academy’s website, campus location, and their
-      world-class JavaScript playlist—all in one place.
-    </p>
+    <header class="page-header">
+      <h1 id="top">TAP Academy — Gamify Learning Simplify Employment</h1>
+      <p>
+        This page embeds TAP Academy’s website, campus location, and their
+        world-class JavaScript playlist—all in one beautiful showcase.
+      </p>
+    </header>
 
     <!-- ===== Simple Navigation ===== -->
-    <h2>Quick Links</h2>
-    <ul>
-      <li><a href="#website">Official Website</a></li>
-      <li><a href="#location">Campus Location (Map)</a></li>
-      <li><a href="#playlist">JavaScript Playlist</a></li>
-    </ul>
+    <nav class="quick-links-container">
+      <h2>Quick Links</h2>
+      <ul class="quick-links">
+        <li><a href="#website">🌐 Official Website</a></li>
+        <li><a href="#location">📍 Campus Location</a></li>
+        <li><a href="#playlist">▶️ JavaScript Playlist</a></li>
+      </ul>
+    </nav>
 
-    <!-- ===== 1. Embedded Website ===== -->
-    <h2 id="website">Official TAP Academy Website</h2>
-    <p>Explore the live site without leaving this page:</p>
-    <iframe
-      src="https://thetapacademy.com/"
-      width="100%"
-      height="600"
-      title="TAP Academy Website"
-      loading="lazy"
-    >
-    </iframe>
+    <main class="showcase-container">
+      <!-- ===== 1. Embedded Website ===== -->
+      <section class="glass-card">
+        <h2 id="website">Official TAP Academy Website</h2>
+        <p>Explore the live site without leaving this page:</p>
+        <div class="iframe-wrapper standard-iframe">
+          <iframe
+            src="https://thetapacademy.com/"
+            height="600"
+            title="TAP Academy Website"
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+      </section>
 
-    <!-- ===== 2. Google Maps Location ===== -->
-    <h2 id="location">TAP Academy — BTM Layout Campus</h2>
-    <p>Find us on the map:</p>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.866285811296!2d77.60805687597387!3d12.91631448739398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d6411bbb945%3A0x884e5e751a18bc1!2sTAP%20ACADEMY%20BTM!5e0!3m2!1sen!2sin!4v1750248777666!5m2!1sen!2sin"
-      width="100%"
-      height="450"
-      style="border: 0"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="TAP Academy Map"
-    >
-    </iframe>
+      <!-- ===== 2. Google Maps Location ===== -->
+      <section class="glass-card">
+        <h2 id="location">TAP Academy — BTM Layout Campus</h2>
+        <p>Find us on the map:</p>
+        <div class="iframe-wrapper standard-iframe">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.866285811296!2d77.60805687597387!3d12.91631448739398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d6411bbb945%3A0x884e5e751a18bc1!2sTAP%20ACADEMY%20BTM!5e0!3m2!1sen!2sin!4v1750248777666!5m2!1sen!2sin"
+            height="450"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="TAP Academy Map"
+          >
+          </iframe>
+        </div>
+      </section>
 
-    <!-- ===== 3. YouTube Playlist ===== -->
-    <h2 id="playlist">World-class JavaScript Course Playlist</h2>
-    <p>Watch TAP Academy’s complete JavaScript series right here:</p>
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/videoseries?si=k-QUp0U-84v9YMld&amp;list=PLU83Ru7iGtAtTlQ8MRGHCBu4tzATiRfmY"
-      title="TAP Academy JavaScript Playlist"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    >
-    </iframe>
+      <!-- ===== 3. YouTube Playlist ===== -->
+      <section class="glass-card">
+        <h2 id="playlist">World-class JavaScript Course Playlist</h2>
+        <p>Watch TAP Academy’s complete JavaScript series right here:</p>
+        <div class="iframe-wrapper video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/videoseries?si=k-QUp0U-84v9YMld&amp;list=PLU83Ru7iGtAtTlQ8MRGHCBu4tzATiRfmY"
+            title="TAP Academy JavaScript Playlist"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+      </section>
+    </main>
 
     <!-- ===== Footer ===== -->
-    <p><a href="#top">⬆ Back to top</a></p>
-    <hr />
-    <p>&copy; 2025 TAP Academy • This page created for iframe practice.</p>
+    <footer>
+      <p><a href="#top">⬆ Back to top</a></p>
+      <hr />
+      <p>&copy; 2026 TAP Academy • Interactive Showcase by AI.</p>
+    </footer>
   </body>
 </html>

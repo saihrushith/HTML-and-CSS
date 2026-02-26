@@ -1,0 +1,329 @@
+/* project4-1.css - Interactive Showcase Glassmorphism Layout */
+
+/* Import Google Sans */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Google Sans", sans-serif;
+  background: url("./Assets/background.jpg") center center / cover no-repeat
+    fixed;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.5);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.8);
+}
+
+/* Back Link (Top left absolute or relative top) */
+.back-link {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  padding: 10px 25px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.back-link:hover {
+  background: rgba(255, 64, 129, 0.2);
+  border-color: #ff4081;
+  color: #ff4081;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+}
+
+/* ==================================================
+   PAGE HEADER & TYPOGRAPHY
+   ================================================== */
+.page-header {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  animation: fadeInDown 1s ease-out forwards;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #00e5ff;
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.page-header p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #ff4081;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+}
+
+/* ==================================================
+   QUICK LINKS (Pill Buttons)
+   ================================================== */
+.quick-links-container {
+  margin-bottom: 4rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 1s ease-out 0.2s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.quick-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.quick-links a {
+  display: inline-block;
+  padding: 12px 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.1),
+    rgba(255, 64, 129, 0.1)
+  );
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button Hover Effects */
+.quick-links a:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.3),
+    rgba(255, 64, 129, 0.3)
+  );
+  border-color: #00e5ff;
+  color: #fff;
+  box-shadow:
+    0 10px 25px rgba(0, 229, 255, 0.4),
+    0 0 15px rgba(255, 64, 129, 0.4);
+  text-shadow: 0 0 8px white;
+}
+
+/* ==================================================
+   SHOWCASE CARDS (Glassmorphism)
+   ================================================== */
+.showcase-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Stagger animations for cards */
+.glass-card:nth-child(1) {
+  animation-delay: 0.4s;
+}
+.glass-card:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.glass-card:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 229, 255, 0.1);
+}
+
+.glass-card > p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* ==================================================
+   IFRAME WRAPPERS
+   ================================================== */
+.iframe-wrapper {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: #000; /* Dark background behind iframes */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover .iframe-wrapper {
+  border-color: rgba(0, 229, 255, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 229, 255, 0.2);
+}
+
+/* Keep aspect ratio for youtube */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Standard map/website iframes */
+.standard-iframe iframe {
+  width: 100%;
+  display: block;
+  border: none;
+}
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+footer {
+  margin-top: 5rem;
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 1200px;
+}
+
+footer a {
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  text-shadow: 0 0 10px #00e5ff;
+  color: #fff;
+}
+
+footer hr {
+  border: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 1.5rem 0;
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* ==================================================
+   ANIMATIONS
+   ================================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .glass-card {
+    padding: 1.5rem;
+  }
+  .quick-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  .quick-links a {
+    text-align: center;
+  }
+}
